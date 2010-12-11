@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* SliderPageControlDemoAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1965, 1365}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1965, 1313}}";
 			sepNavSelRange = "{1290, 0}";
-			sepNavVisRange = "{1287, 1207}";
+			sepNavVisRange = "{1283, 1802}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* SliderPageControlDemo */ = {
@@ -37,9 +37,9 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					467,
+					652,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 					20,
@@ -54,24 +54,74 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 313728928;
-			PBXWorkspaceStateSaveDate = 313728928;
+			PBXPerProjectTemplateStateSaveDate = 313774371;
+			PBXWorkspaceStateSaveDate = 313774371;
 		};
 		perUserProjectItems = {
+			F82DE9A812B3D17500976738 /* PlistBookmark */ = F82DE9A812B3D17500976738 /* PlistBookmark */;
+			F82DE9A912B3D17500976738 /* PBXTextBookmark */ = F82DE9A912B3D17500976738 /* PBXTextBookmark */;
+			F82DE9AA12B3D17500976738 /* PBXTextBookmark */ = F82DE9AA12B3D17500976738 /* PBXTextBookmark */;
+			F82DE9AB12B3D17500976738 /* PBXTextBookmark */ = F82DE9AB12B3D17500976738 /* PBXTextBookmark */;
+			F82DE9AC12B3D17500976738 /* PBXTextBookmark */ = F82DE9AC12B3D17500976738 /* PBXTextBookmark */;
 			F879B21012B32328006DE72A /* PBXTextBookmark */ = F879B21012B32328006DE72A /* PBXTextBookmark */;
 			F879B22312B32526006DE72A /* PBXTextBookmark */ = F879B22312B32526006DE72A /* PBXTextBookmark */;
-			F879B22D12B32552006DE72A /* PBXTextBookmark */ = F879B22D12B32552006DE72A /* PBXTextBookmark */;
 			F879B26812B32843006DE72A /* PBXTextBookmark */ = F879B26812B32843006DE72A /* PBXTextBookmark */;
 			F879B26B12B32843006DE72A /* PBXTextBookmark */ = F879B26B12B32843006DE72A /* PBXTextBookmark */;
-			F879B27012B328AF006DE72A /* PBXTextBookmark */ = F879B27012B328AF006DE72A /* PBXTextBookmark */;
-			F879B27112B328AF006DE72A /* PBXTextBookmark */ = F879B27112B328AF006DE72A /* PBXTextBookmark */;
-			F879B27E12B32919006DE72A /* PBXTextBookmark */ = F879B27E12B32919006DE72A /* PBXTextBookmark */;
-			F879B27F12B32919006DE72A /* PlistBookmark */ = F879B27F12B32919006DE72A /* PlistBookmark */;
-			F879B28012B32919006DE72A /* PlistBookmark */ = F879B28012B32919006DE72A /* PlistBookmark */;
 		};
 		sourceControlManager = F879B1DE12B31FA9006DE72A /* Source Control */;
 		userBuildSettings = {
 		};
+	};
+	F82DE9A812B3D17500976738 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* SliderPageControlDemo-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/honcheng/Dropbox/Open Source Projects/SliderPageControl/SliderPageControlDemo/SliderPageControlDemo-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F82DE9A912B3D17500976738 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* SliderPageControlDemoAppDelegate.m */;
+		name = "SliderPageControlDemoAppDelegate.m: 32";
+		rLen = 0;
+		rLoc = 1290;
+		rType = 0;
+		vrLen = 1802;
+		vrLoc = 1283;
+	};
+	F82DE9AA12B3D17500976738 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F879B1EA12B32016006DE72A /* SliderPageControlDemoViewController.m */;
+		name = "SliderPageControlDemoViewController.m: 85";
+		rLen = 0;
+		rLoc = 3712;
+		rType = 0;
+		vrLen = 2454;
+		vrLoc = 1933;
+	};
+	F82DE9AB12B3D17500976738 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F879B20712B322AE006DE72A /* SliderPageControl.m */;
+		name = "SliderPageControl.m: 39";
+		rLen = 0;
+		rLoc = 1415;
+		rType = 0;
+		vrLen = 1669;
+		vrLoc = 544;
+	};
+	F82DE9AC12B3D17500976738 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F879B20712B322AE006DE72A /* SliderPageControl.m */;
+		name = "SliderPageControl.m: 64";
+		rLen = 0;
+		rLoc = 2507;
+		rType = 0;
+		vrLen = 1627;
+		vrLoc = 1385;
 	};
 	F879B1CF12B31FA0006DE72A /* SliderPageControlDemo */ = {
 		isa = PBXExecutable;
@@ -124,9 +174,9 @@
 	};
 	F879B1EA12B32016006DE72A /* SliderPageControlDemoViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1363, 2080}}";
-			sepNavSelRange = "{2857, 0}";
-			sepNavVisRange = "{1821, 2258}";
+			sepNavIntBoundsRect = "{{0, 0}, {1230, 2041}}";
+			sepNavSelRange = "{3712, 0}";
+			sepNavVisRange = "{1933, 2454}";
 		};
 	};
 	F879B20612B322AE006DE72A /* SliderPageControl.h */ = {
@@ -138,9 +188,9 @@
 	};
 	F879B20712B322AE006DE72A /* SliderPageControl.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {796, 3900}}";
-			sepNavSelRange = "{1415, 0}";
-			sepNavVisRange = "{916, 1087}";
+			sepNavIntBoundsRect = "{{0, 0}, {1188, 4043}}";
+			sepNavSelRange = "{2507, 0}";
+			sepNavVisRange = "{1385, 1627}";
 		};
 	};
 	F879B21012B32328006DE72A /* PBXTextBookmark */ = {
@@ -165,31 +215,10 @@
 	};
 	F879B22412B32526006DE72A /* FBLoginButton.m */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
 		name = FBLoginButton.m;
 		path = /Users/honcheng/iphone/coding/myOfficialAppWithSVN/PaperClip/GReader/Classes/FBConnect/src/FBLoginButton.m;
 		sourceTree = "<absolute>";
-	};
-	F879B22712B32526006DE72A /* SGBusArrivalsViewController2.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = SGBusArrivalsViewController2.m;
-		path = /Users/honcheng/iphone/coding/myOfficialAppWithSVN/SGNextBus/SGBusArrivals/Classes/SGBusArrivalsViewController2.m;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1104, 3705}}";
-			sepNavSelRange = "{0, 9321}";
-			sepNavVisRange = "{5164, 954}";
-		};
-	};
-	F879B22D12B32552006DE72A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F879B22712B32526006DE72A /* SGBusArrivalsViewController2.m */;
-		name = "SGBusArrivalsViewController2.m: 1";
-		rLen = 9321;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 954;
-		vrLoc = 5164;
 	};
 	F879B26812B32843006DE72A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -210,57 +239,5 @@
 		rType = 0;
 		vrLen = 854;
 		vrLoc = 1271;
-	};
-	F879B27012B328AF006DE72A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F879B20712B322AE006DE72A /* SliderPageControl.m */;
-		name = "SliderPageControl.m: 39";
-		rLen = 0;
-		rLoc = 1415;
-		rType = 0;
-		vrLen = 1087;
-		vrLoc = 916;
-	};
-	F879B27112B328AF006DE72A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* SliderPageControlDemoAppDelegate.m */;
-		name = "SliderPageControlDemoAppDelegate.m: 32";
-		rLen = 0;
-		rLoc = 1290;
-		rType = 0;
-		vrLen = 1207;
-		vrLoc = 1287;
-	};
-	F879B27E12B32919006DE72A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F879B1EA12B32016006DE72A /* SliderPageControlDemoViewController.m */;
-		name = "SliderPageControlDemoViewController.m: 72";
-		rLen = 0;
-		rLoc = 2857;
-		rType = 0;
-		vrLen = 2258;
-		vrLoc = 1821;
-	};
-	F879B27F12B32919006DE72A /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* SliderPageControlDemo-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/honcheng/Dropbox/Open Source Projects/SliderPageControl/SliderPageControlDemo/SliderPageControlDemo-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	F879B28012B32919006DE72A /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* SliderPageControlDemo-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/honcheng/Dropbox/Open Source Projects/SliderPageControl/SliderPageControlDemo/SliderPageControlDemo-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775807;
 	};
 }

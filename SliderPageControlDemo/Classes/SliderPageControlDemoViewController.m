@@ -83,8 +83,6 @@
 		[self.sliderPageControl addTarget:self action:@selector(onPageChanged:) forControlEvents:UIControlEventValueChanged];
 		[self.sliderPageControl setDelegate:self];
 		[self.sliderPageControl setShowsHint:YES];
-		[[self.sliderPageControl backgroundView] setImage:[[UIImage imageNamed:@"SliderPageControl.bundle/images/sliderPageControlBg.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
-		[[self.sliderPageControl slider] setImage:[[UIImage imageNamed:@"SliderPageControl.bundle/images/sliderPageControl.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
 		[self.view addSubview:self.sliderPageControl];
 		[self.sliderPageControl release];
 		[self.sliderPageControl setNumberOfPages:[self.demoContent count]];

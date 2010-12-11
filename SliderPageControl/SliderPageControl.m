@@ -59,6 +59,9 @@
 		[slider setAlpha:0.8];
 		[self addSubview:slider];
 		[slider release];
+		
+		[backgroundView setImage:[[UIImage imageNamed:@"SliderPageControl.bundle/images/sliderPageControlBg.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
+		[slider setImage:[[UIImage imageNamed:@"SliderPageControl.bundle/images/sliderPageControl.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
     }
     return self;
 }
