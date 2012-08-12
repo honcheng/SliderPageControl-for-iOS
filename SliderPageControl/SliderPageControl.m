@@ -43,51 +43,48 @@
 @end
 
 @implementation SliderPageControl
-@synthesize delegate, showsHint, backgroundView, slider;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
 		[self setBackgroundColor:[UIColor clearColor]];
-		backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,frame.size.width,frame.size.height)];
-		[backgroundView setBackgroundColor:[UIColor clearColor]];
-		[self addSubview:backgroundView];
-		[backgroundView release];
+		_backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,frame.size.width,frame.size.height)];
+		[_backgroundView setBackgroundColor:[UIColor clearColor]];
+		[self addSubview:_backgroundView];
 		
-		slider = [[UIImageView alloc] initWithFrame:CGRectZero];
-		[slider setBackgroundColor:[UIColor clearColor]];
-		[slider setAlpha:0.8];
-		[self addSubview:slider];
-		[slider release];
+		_slider = [[UIImageView alloc] initWithFrame:CGRectZero];
+		[_slider setBackgroundColor:[UIColor clearColor]];
+		[_slider setAlpha:0.8];
+		[self addSubview:_slider];
 		
-		[backgroundView setImage:[[UIImage imageNamed:@"SliderPageControl.bundle/images/sliderPageControlBg.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
-		[slider setImage:[[UIImage imageNamed:@"SliderPageControl.bundle/images/sliderPageControl.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
+		[_backgroundView setImage:[[UIImage imageNamed:@"SliderPageControl.bundle/images/sliderPageControlBg.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
+		[_slider setImage:[[UIImage imageNamed:@"SliderPageControl.bundle/images/sliderPageControl.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
     }
     return self;
 }
 
 - (void)setNumberOfPages:(int)page
 {
-	numberOfPages = page;
+	_numberOfPages = page;
 	[self setNeedsDisplay];
 	
-	int width = self.frame.size.width/numberOfPages;
-	int x = width*currentPage;
+	int width = self.frame.size.width/_numberOfPages;
+	int x = width*_currentPage;
 	
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-	[slider setFrame:CGRectMake(x,0,width,self.frame.size.height)];
+	[self.slider setFrame:CGRectMake(x,0,width,self.frame.size.height)];
 	[UIView commitAnimations];
 }
 
-- (int)currentPage
+- (void)setCurrentPage:(int)currentPage
 {
-	return currentPage;
+    [self setCurrentPage:currentPage animated:NO];
 }
 
-- (void)setCurrentPage:(int)_currentPage animated:(BOOL)animated
+- (void)setCurrentPage:(int)currentPage animated:(BOOL)animated
 {
-	currentPage = _currentPage;
+	_currentPage = currentPage;
 	
 	if (animated)
 	{
@@ -95,9 +92,9 @@
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	}
 	
-	int width = self.frame.size.width/numberOfPages;
+	int width = self.frame.size.width/self.numberOfPages;
 	int x = width*currentPage;
-	[slider setFrame:CGRectMake(x,0,width,self.frame.size.height)];
+	[self.slider setFrame:CGRectMake(x,0,width,self.frame.size.height)];
 	if (animated) [UIView commitAnimations];
 }
 
@@ -111,20 +108,15 @@
 	blackColor[1]=0.0;
 	blackColor[2]=0.0;
 	blackColor[3]=1.0;
-	float width = self.frame.size.width/numberOfPages;
+	float width = self.frame.size.width/self.numberOfPages;
 	
 	int i;
-	for (i=0; i<numberOfPages; i++)
+	for (i=0; i<self.numberOfPages; i++)
 	{
 		int x = i*width + (width-diameter)/2;
 		CGContextSetFillColor(myContext, blackColor);
 		CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-diameter)/2,diameter,diameter));
 	}
-}
-
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 #pragma mark mask view
@@ -133,41 +125,39 @@
 {
 	if (show)
 	{
-		if (maskView==nil)
+		if (self.maskView==nil)
 		{
-			maskView = [[UIView alloc] initWithFrame:CGRectMake(0,0,[self window].frame.size.width,[self window].frame.size.height)];
-			[maskView setBackgroundColor:[UIColor blackColor]];
-			[[self superview] insertSubview:maskView belowSubview:self];
-			[maskView release];
+			self.maskView = [[UIView alloc] initWithFrame:CGRectMake(0,0,[self window].frame.size.width,[self window].frame.size.height)];
+			[self.maskView setBackgroundColor:[UIColor blackColor]];
+			[[self superview] insertSubview:self.maskView belowSubview:self];
 			
-			hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,20,maskView.frame.size.width-40,maskView.frame.size.height-40)];
-			[hintLabel setBackgroundColor:[UIColor clearColor]];
-			[hintLabel setFont:[UIFont boldSystemFontOfSize:30]];
-			[hintLabel setNumberOfLines:10];
-			[hintLabel setTextAlignment:UITextAlignmentCenter];
-			[hintLabel setTextColor:[UIColor whiteColor]];
-			[hintLabel setShadowColor:[UIColor blackColor]];
-			[hintLabel setShadowOffset:CGSizeMake(0,-1)];
-			[maskView addSubview:hintLabel];
-			[hintLabel release];
+			self.hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,20,self.maskView.frame.size.width-40,self.maskView.frame.size.height-40)];
+			[self.hintLabel setBackgroundColor:[UIColor clearColor]];
+			[self.hintLabel setFont:[UIFont boldSystemFontOfSize:30]];
+			[self.hintLabel setNumberOfLines:10];
+			[self.hintLabel setTextAlignment:UITextAlignmentCenter];
+			[self.hintLabel setTextColor:[UIColor whiteColor]];
+			[self.hintLabel setShadowColor:[UIColor blackColor]];
+			[self.hintLabel setShadowOffset:CGSizeMake(0,-1)];
+			[self.maskView addSubview:self.hintLabel];
 			
-			[maskView setAlpha:0.0];
+			[self.maskView setAlpha:0.0];
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-			[maskView setAlpha:MASK_VISIBLE_ALPHA];
+			[self.maskView setAlpha:MASK_VISIBLE_ALPHA];
 			[UIView commitAnimations];
 		}
 	}
 	else
 	{
-		if (maskView!=nil)
+		if (self.maskView!=nil)
 		{
-			[maskView setAlpha:MASK_VISIBLE_ALPHA];
+			[self.maskView setAlpha:MASK_VISIBLE_ALPHA];
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 			[UIView setAnimationDelegate:self];
 			[UIView setAnimationDidStopSelector:@selector(removeMaskView)];
-			[maskView setAlpha:0.0];
+			[self.maskView setAlpha:0.0];
 			[UIView commitAnimations];
 		}
 		
@@ -176,23 +166,23 @@
 
 - (void)displayHintForPage:(int)page
 {
-	if (hintLabel!=nil)
+	if (self.hintLabel!=nil)
 	{
-		if (showsHint)
+		if (self.showsHint)
 		{
-			if ([delegate respondsToSelector:@selector(sliderPageController:hintTitleForPage:)])
+			if ([self.delegate respondsToSelector:@selector(sliderPageController:hintTitleForPage:)])
 			{
-				NSString *hintText = [delegate sliderPageController:self hintTitleForPage:page];
-				[hintLabel setText:hintText];
+				NSString *hintText = [self.delegate sliderPageController:self hintTitleForPage:page];
+				[self.hintLabel setText:hintText];
 			}
 			else
 			{
-				[hintLabel setText:[NSString stringWithFormat:@"%i", page]];
+				[self.hintLabel setText:[NSString stringWithFormat:@"%i", page]];
 			}
 		}
 		else
 		{
-			[hintLabel setText:@""];
+			[self.hintLabel setText:@""];
 		}
 	}
 	
@@ -200,28 +190,28 @@
 
 - (void)removeMaskView
 {
-	[maskView removeFromSuperview];
-	maskView = nil;
-	hintLabel = nil;
+	[self.maskView removeFromSuperview];
+	self.maskView = nil;
+	self.hintLabel = nil;
 }
 
 #pragma mark touch delegate
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	beganPoint = CGPointMake(slider.frame.origin.x, slider.frame.origin.y);
+	self.beganPoint = CGPointMake(self.slider.frame.origin.x, self.slider.frame.origin.y);
 	CGPoint movedPoint = [[touches anyObject] locationInView:self];
 	
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	
-	CGRect sliderFrame = [slider frame];
+	CGRect sliderFrame = [self.slider frame];
 	float x = movedPoint.x - sliderFrame.size.width/2;
 	if (x<0) x=0;
 	else if (x>self.frame.size.width-sliderFrame.size.width) x = self.frame.size.width-sliderFrame.size.width;
 	
 	sliderFrame.origin.x = x;
-	[slider setFrame:sliderFrame];
+	[self.slider setFrame:sliderFrame];
 	
 	[UIView commitAnimations];
 	
@@ -230,27 +220,27 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	if (!hasDragged) [self showMaskView:YES];
+	if (!self.hasDragged) [self showMaskView:YES];
 	
-	hasDragged = YES;
+	self.hasDragged = YES;
 	CGPoint movedPoint = [[touches anyObject] locationInView:self];
 	
-	CGRect sliderFrame = [slider frame];
+	CGRect sliderFrame = [self.slider frame];
 	float x = movedPoint.x - sliderFrame.size.width/2;
 	if (x<0) x=0;
 	else if (x>self.frame.size.width-sliderFrame.size.width) x = self.frame.size.width-sliderFrame.size.width;
 	
 	sliderFrame.origin.x = x;
-	[slider setFrame:sliderFrame];
+	[self.slider setFrame:sliderFrame];
 	
 	[super touchesMoved:touches withEvent:event];
 
 	int hintPage = 0;
-	float center_x = [slider frame].origin.x + [slider frame].size.width/2;
+	float center_x = [self.slider frame].origin.x + [self.slider frame].size.width/2;
 	int i;
-	for (i=0; i<numberOfPages; i++)
+	for (i=0; i<self.numberOfPages; i++)
 	{
-		float max_x = (i+1)*(self.frame.size.width/numberOfPages);
+		float max_x = (i+1)*(self.frame.size.width/self.numberOfPages);
 		if (center_x<=max_x)
 		{
 			hintPage = i;
@@ -265,7 +255,7 @@
 		float full = 300;
 		float ratio = 1 - difference/full;
 		if (ratio<0) ratio = 0;
-		[maskView setAlpha:MASK_VISIBLE_ALPHA*ratio];
+		[self.maskView setAlpha:MASK_VISIBLE_ALPHA*ratio];
 	}
 }
 
@@ -276,8 +266,8 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	if (hasDragged) [self showMaskView:NO];
-	hasDragged = NO;
+	if (self.hasDragged) [self showMaskView:NO];
+	self.hasDragged = NO;
 	
 	CGPoint endPoint = [[touches anyObject] locationInView:self];
 	
@@ -287,28 +277,28 @@
 
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-		CGRect sliderFrame = [slider frame];
-		sliderFrame.origin.x = beganPoint.x;
-		[slider setFrame:sliderFrame];
+		CGRect sliderFrame = [self.slider frame];
+		sliderFrame.origin.x = self.beganPoint.x;
+		[self.slider setFrame:sliderFrame];
 		[UIView commitAnimations];
 	}
 	else
 	{
 		// touch ended inside, should snap to new location
-		float center_x = [slider frame].origin.x + [slider frame].size.width/2;
+		float center_x = [self.slider frame].origin.x + [self.slider frame].size.width/2;
 		int i;
-		for (i=0; i<numberOfPages; i++)
+		for (i=0; i<self.numberOfPages; i++)
 		{
-			float max_x = (i+1)*(self.frame.size.width/numberOfPages);
+			float max_x = (i+1)*(self.frame.size.width/self.numberOfPages);
 			if (center_x<=max_x)
 			{
 				[UIView beginAnimations:nil context:nil];
 				[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-				CGRect sliderFrame = [slider frame];
-				sliderFrame.origin.x = (i)*(self.frame.size.width/numberOfPages);
-				[slider setFrame:sliderFrame];
+				CGRect sliderFrame = [self.slider frame];
+				sliderFrame.origin.x = (i)*(self.frame.size.width/self.numberOfPages);
+				[self.slider setFrame:sliderFrame];
 				[UIView commitAnimations];
-				currentPage = i;
+				self.currentPage = i;
 			
 				[self sendActionsForControlEvents:UIControlEventValueChanged];
 				

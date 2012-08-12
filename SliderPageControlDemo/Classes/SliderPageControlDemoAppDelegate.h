@@ -33,11 +33,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SliderPageControlDemoAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-}
-
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-
+@interface SliderPageControlDemoAppDelegate : NSObject <UIApplicationDelegate>
+@property (nonatomic, strong) IBOutlet UIWindow *window;
 @end
 

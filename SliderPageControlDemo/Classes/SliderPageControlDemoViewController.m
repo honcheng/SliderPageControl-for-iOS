@@ -35,9 +35,6 @@
 
 
 @implementation SliderPageControlDemoViewController
-@synthesize scrollView;
-@synthesize demoContent;
-@synthesize sliderPageControl;
 
 - (id)init
 {
@@ -45,56 +42,53 @@
 	{
 		[self.view setBackgroundColor:[UIColor blackColor]];
 		
-		self.demoContent = [NSMutableArray new];
+		_demoContent = [NSMutableArray array];
 		NSMutableDictionary *page1 = [NSMutableDictionary dictionary];
 		[page1 setObject:@"RED" forKey:@"title"];
 		[page1 setObject:[UIColor redColor] forKey:@"color"];
-		[self.demoContent addObject:page1];
+		[_demoContent addObject:page1];
 		NSMutableDictionary *page2 = [NSMutableDictionary dictionary];
 		[page2 setObject:@"ORANGE" forKey:@"title"];
 		[page2 setObject:[UIColor orangeColor] forKey:@"color"];
-		[self.demoContent addObject:page2];
+		[_demoContent addObject:page2];
 		NSMutableDictionary *page3 = [NSMutableDictionary dictionary];
 		[page3 setObject:@"YELLOW" forKey:@"title"];
 		[page3 setObject:[UIColor yellowColor] forKey:@"color"];
-		[self.demoContent addObject:page3];
+		[_demoContent addObject:page3];
 		NSMutableDictionary *page4 = [NSMutableDictionary dictionary];
 		[page4 setObject:@"GREEN" forKey:@"title"];
 		[page4 setObject:[UIColor greenColor] forKey:@"color"];
-		[self.demoContent addObject:page4];
+		[_demoContent addObject:page4];
 		NSMutableDictionary *page5 = [NSMutableDictionary dictionary];
 		[page5 setObject:@"BLUE" forKey:@"title"];
 		[page5 setObject:[UIColor blueColor] forKey:@"color"];
-		[self.demoContent addObject:page5];
+		[_demoContent addObject:page5];
 		NSMutableDictionary *page6 = [NSMutableDictionary dictionary];
 		[page6 setObject:@"PURPLE" forKey:@"title"];
 		[page6 setObject:[UIColor purpleColor] forKey:@"color"];
-		[self.demoContent addObject:page6];
+		[_demoContent addObject:page6];
 		
-		self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,[self.view bounds].size.width,[self.view bounds].size.height)];
-		[self.scrollView setPagingEnabled:YES];
-		[self.scrollView setContentSize:CGSizeMake([self.demoContent count]*self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
-		[self.scrollView setShowsHorizontalScrollIndicator:NO];
-		[self.scrollView setDelegate:self];
-		[self.view addSubview:self.scrollView];
-		[self.scrollView release];
+		_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,[self.view bounds].size.width,[self.view bounds].size.height)];
+		[_scrollView setPagingEnabled:YES];
+		[_scrollView setContentSize:CGSizeMake([self.demoContent count]*self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
+		[_scrollView setShowsHorizontalScrollIndicator:NO];
+		[_scrollView setDelegate:self];
+		[self.view addSubview:_scrollView];
 		
-		self.sliderPageControl = [[SliderPageControl  alloc] initWithFrame:CGRectMake(0,[self.view bounds].size.height-20,[self.view bounds].size.width,20)];
-		[self.sliderPageControl addTarget:self action:@selector(onPageChanged:) forControlEvents:UIControlEventValueChanged];
-		[self.sliderPageControl setDelegate:self];
-		[self.sliderPageControl setShowsHint:YES];
-		[self.view addSubview:self.sliderPageControl];
-		[self.sliderPageControl release];
-		[self.sliderPageControl setNumberOfPages:[self.demoContent count]];
-		[self.sliderPageControl setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
+		_sliderPageControl = [[SliderPageControl  alloc] initWithFrame:CGRectMake(0,[self.view bounds].size.height-20,[self.view bounds].size.width,20)];
+		[_sliderPageControl addTarget:self action:@selector(onPageChanged:) forControlEvents:UIControlEventValueChanged];
+		[_sliderPageControl setDelegate:self];
+		[_sliderPageControl setShowsHint:YES];
+		[self.view addSubview:_sliderPageControl];
+		[_sliderPageControl setNumberOfPages:[self.demoContent count]];
+		[_sliderPageControl setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
 		
 		
-		for (int i=0; i<[self.demoContent count]; i++)
+		for (int i=0; i<[_demoContent count]; i++)
 		{
-			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(i*self.scrollView.frame.size.width,0,self.scrollView.frame.size.width,self.scrollView.frame.size.height)];
-			[view setBackgroundColor:[[self.demoContent objectAtIndex:i] objectForKey:@"color"]];
-			[self.scrollView addSubview:view];
-			[view release];
+			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(i*_scrollView.frame.size.width,0,_scrollView.frame.size.width,_scrollView.frame.size.height)];
+			[view setBackgroundColor:[[_demoContent objectAtIndex:i] objectForKey:@"color"]];
+			[_scrollView addSubview:view];
 		}
 		
 		[self changeToPage:1 animated:NO];
@@ -116,37 +110,29 @@
     // e.g. self.myOutlet = nil;
 }
 
-
-- (void)dealloc {
-	[self.sliderPageControl release];
-	[self.demoContent release];
-	[self.scrollView release];
-    [super dealloc];
-}
-
 #pragma mark scrollview delegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView_
 {
-	pageControlUsed = NO;
+	self.pageControlUsed = NO;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView_ 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (pageControlUsed) 
+    if (self.pageControlUsed) 
 	{
         return;
     }
 	
-    CGFloat pageWidth = scrollView.frame.size.width;
-    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 	
-	[sliderPageControl setCurrentPage:page animated:YES];
+	[self.sliderPageControl setCurrentPage:page animated:YES];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView_
 {
-	pageControlUsed = NO;
+	self.pageControlUsed = NO;
 }
 
 #pragma mark sliderPageControlDelegate
@@ -159,24 +145,23 @@
 
 - (void)onPageChanged:(id)sender
 {
-	pageControlUsed = YES;
+	self.pageControlUsed = YES;
 	[self slideToCurrentPage:YES];
-	
 }
 
 - (void)slideToCurrentPage:(bool)animated 
 {
-	int page = sliderPageControl.currentPage;
+	int page = self.sliderPageControl.currentPage;
 	
-    CGRect frame = scrollView.frame;
+    CGRect frame = self.scrollView.frame;
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
-    [scrollView scrollRectToVisible:frame animated:animated]; 
+    [self.scrollView scrollRectToVisible:frame animated:animated];
 }
 
 - (void)changeToPage:(int)page animated:(BOOL)animated
 {
-	[sliderPageControl setCurrentPage:page animated:YES];
+	[self.sliderPageControl setCurrentPage:page animated:YES];
 	[self slideToCurrentPage:animated];
 }
 

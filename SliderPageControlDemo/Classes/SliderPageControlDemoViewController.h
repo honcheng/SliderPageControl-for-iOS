@@ -33,16 +33,11 @@
 #import <UIKit/UIKit.h>
 #import "SliderPageControl.h"
 
-@interface SliderPageControlDemoViewController : UIViewController <SliderPageControlDelegate, UIScrollViewDelegate>{
-	UIScrollView *scrollView;
-	NSMutableArray *demoContent;
-	SliderPageControl *sliderPageControl;
-	BOOL pageControlUsed;
-}
-
-@property (nonatomic, retain) SliderPageControl *sliderPageControl;
-@property (nonatomic, retain) NSMutableArray *demoContent;
-@property (nonatomic, retain) UIScrollView *scrollView;
+@interface SliderPageControlDemoViewController : UIViewController <SliderPageControlDelegate, UIScrollViewDelegate>
+@property (nonatomic, strong) SliderPageControl *sliderPageControl;
+@property (nonatomic, strong) NSMutableArray *demoContent;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, assign) BOOL pageControlUsed;
 
 - (void)slideToCurrentPage:(bool)animated;
 - (void)changeToPage:(int)page animated:(BOOL)animated;

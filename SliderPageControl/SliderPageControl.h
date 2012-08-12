@@ -40,26 +40,16 @@
 @end
 
 
-@interface SliderPageControl : UIControl {
-	UIImageView *backgroundView;
-	int numberOfPages;
-	int currentPage;
-	UIImageView *slider;
-	CGPoint beganPoint;
-	BOOL hasDragged;
-	UIView *maskView;
-	UILabel *hintLabel;
-	id<SliderPageControlDelegate> delegate;
-	BOOL showsHint;
-}
+@interface SliderPageControl : UIControl
+@property (nonatomic, unsafe_unretained) id<SliderPageControlDelegate> delegate;
+@property (nonatomic, assign) BOOL showsHint, hasDragged;
+@property (nonatomic, strong) UIImageView *backgroundView;
+@property (nonatomic, strong) UIImageView *slider;
+@property (nonatomic, assign) int numberOfPages, currentPage;
+@property (nonatomic, assign) CGPoint beganPoint;
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UILabel *hintLabel;
 
-@property (nonatomic, retain) id<SliderPageControlDelegate> delegate;
-@property (nonatomic, assign) BOOL showsHint;
-@property (nonatomic, retain) UIImageView *backgroundView;
-@property (nonatomic, retain) UIImageView *slider;
-
-- (void)setNumberOfPages:(int)page;
-- (int)currentPage;
 - (void)setCurrentPage:(int)_currentPage animated:(BOOL)animated;
 
 @end
